@@ -6,3 +6,6 @@
 4. Sistema de assinatura será incluido ápos inserir um cartão credito.
 5. Salvar dados na nuvem irá guardar os livros e suas leituras.
 6. Ler o PDF
+# Nome  dos integrantes
+1. israel  Bernardo 
+2. Philippe Kaway
