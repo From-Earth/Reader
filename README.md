@@ -7,7 +7,7 @@
 5. Salvar dados na nuvem irá guardar os livros e suas leituras.
 6. Ler o PDF
 
-# Nome  dos Integrantes da Turma D
+# Nome  dos Integrantes Turma D
 
 1. Israel Bernardo 
 2. Philippe Kaway
