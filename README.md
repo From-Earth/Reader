@@ -14,3 +14,8 @@
 3. Matheus Monteiro
 4. Guilherme Braga
 5. Lucas dos Santos Souza
+
+
+## Mer
+
+![image](https://user-images.githubusercontent.com/101605470/224457777-3ba95f2c-1947-47df-8b48-828954f611af.png)
