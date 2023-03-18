@@ -18,7 +18,7 @@
 
 ## Mer
 
-![image](MER.png)
+![image](MER.PNG)
 
 
 
