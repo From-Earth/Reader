@@ -24,8 +24,7 @@
 
 <br>
 
-LINK DO FIGMA:
-https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FWiqAjwm40VFj6T3suK9YAK%2FREADER%3Fnode-id%3D0%253A1%26t%3DIQKhXkAviADEr84D-1
+<a rel="external" target="_blank" href="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FWiqAjwm40VFj6T3suK9YAK%2FREADER%3Fnode-id%3D0%253A1%26t%3DIQKhXkAviADEr84D-1">LINK NO FIGMA</a>
 
 <br>
 
