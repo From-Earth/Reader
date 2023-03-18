@@ -7,6 +7,11 @@
 5. Salvar dados na nuvem irá guardar os livros e suas leituras.
 6. Ler o PDF
 
+# Entidades
+- tb_usuario
+- tb_pdf
+- tb_avaliacao
+
 # Nome  dos Integrantes Turma D
 
 1. Israel Bernardo 
