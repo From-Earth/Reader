@@ -1,7 +1,7 @@
 import { getChildrenCount, getChildrenText } from "@utils/tools";
 import { Container, Title } from "./styles";
-import { useConfigStore } from "@storage/settings/default";
 import { useTheme } from "styled-components/native";
+import { useConfigStore } from "@storage/settings";
 
 interface Props {
   children?: React.ReactNode;

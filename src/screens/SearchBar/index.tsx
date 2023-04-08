@@ -6,9 +6,9 @@ import { ButtonIcon } from "@components/Button/Icon";
 import { WarningIcon } from "@components/Icon";
 import { InputTextArea } from "@components/Input/TextArea";
 import { AccordionSwitch } from "@components/Accordion/AccordionSwitch";
-import { useConfigStore } from "@storage/settings/default";
 import { useState } from "react";
 import { generatePattern } from "./generate.pattern";
+import { useConfigStore } from "@storage/settings";
 
 export function SearchBarBehavior() {
   const navigation = useNavigation();
