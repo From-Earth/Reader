@@ -4,8 +4,7 @@ import { Header } from "@components/Header";
 import { useNavigation } from "@react-navigation/native";
 import { Accordion } from "@components/Accordion";
 import { RightIcon } from "@components/Icon";
-import { useConfigStore } from "@storage/settings/default";
-
+import { useConfigStore } from "@storage/settings";
 
 export function Settings() {
   const navigation = useNavigation();

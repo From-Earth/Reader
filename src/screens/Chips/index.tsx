@@ -7,7 +7,7 @@ import { WarningIcon } from "@components/Icon";
 import { useNavigation } from "@react-navigation/native";
 import { InputTextArea } from "@components/Input/TextArea";
 import { useState } from "react";
-import { useConfigStore } from "@storage/settings/default";
+import { useConfigStore } from "@storage/settings";
 
 export function ChipsConfig() {
     const navigation = useNavigation();
