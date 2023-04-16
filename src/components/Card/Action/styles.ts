@@ -9,6 +9,9 @@ export const Container = styled(TouchableOpacity).attrs(()  => ({
   border-radius: ${({ theme }) => theme.SIZES.size_6}px;
   background-color: ${({ theme }) => theme.COLORS.NEUTRAL_900};
   flex-direction: row;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 4px;
 `;
 
 export const TitleContainer = styled.View`
@@ -19,22 +22,9 @@ export const TitleContainer = styled.View`
 
 export const Title = styled.Text`
   font-family: ${({ theme }) => theme.FONT.REGULAR};
-  font-size: ${({ theme }) => theme.FONT_SIZE.XSM}px;
+  font-size: ${({ theme }) => theme.FONT_SIZE.XXSM}px;
   color: ${({ theme }) => theme.COLORS.GREY_900};
 `
-
-export const RightBox = styled.View`
-  height: 90px;
-  width: 55px;
-  padding: 4px;
-  align-items: flex-end;
-`;
-
-export const LeftBox = styled.View`
-  height: 90px;
-  width: 35px;
-  padding: 4px;
-`;
 
 export const TextBox = styled.Text`
   font-size: ${({ theme }) => theme.FONT_SIZE.XSM}px;

@@ -2,7 +2,7 @@ import { getChildren, getChildrenText } from "@utils/tools";
 import { TouchableOpacityProps } from "react-native/Libraries/Components/Touchable/TouchableOpacity";
 import { Container, OtherContainer, Title } from "./styles";
 import { Switch } from "@components/Switch";
-import { useRef, useState } from "react";
+import { useState } from "react";
 
 export type Props = {
     variant?: "default" | "first";

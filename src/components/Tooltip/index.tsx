@@ -26,9 +26,10 @@ export function Tooltip({ children, opened }: Props) {
 
   return opened && (
     <MotiView
-      from={{ opacity: .6 }}
-      transition={{ type: "timing", duration: 200, easing: Easing.inOut(Easing.linear) }}
+      from={{ scale: .8, opacity: .8 }}
+      transition={{ type: "timing", duration: 125, easing: Easing.inOut(Easing.linear) }}
       animate={{
+        scale: opened && 1,
         opacity: opened && 1,
       }}
       style={{

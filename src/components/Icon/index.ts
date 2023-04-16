@@ -1,4 +1,4 @@
-import { CaretLeft, CaretRight, Gear, LinkBreak, LinkSimple, Warning } from "phosphor-react-native";
+import { CaretLeft, CaretRight, Gear, LinkBreak, LinkSimple, Warning, X } from "phosphor-react-native";
 import styled from "styled-components";
 
 export const BackIcon = styled(CaretLeft).attrs(({ theme }) => ({
@@ -56,3 +56,13 @@ export const Settings = styled(Gear).attrs(({ theme }) => ({
   align-items: center;
   justify-content: center;
 `;
+
+export const Close = styled(X).attrs(({ theme }) => ({
+  color: theme.COLORS.WHITE,
+  size: 20,
+}))`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+

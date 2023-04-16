@@ -1,3 +1,5 @@
+import { Book } from '@storage/readingData/default';
+
 export declare global {
   namespace ReactNavigation {
     interface RootParamList {
@@ -10,10 +12,7 @@ export declare global {
       Background: undefined;
       LocalDocuments: undefined;
       Chips: undefined
-      Book: {
-        uri: string
-        title: string
-      }
+      Book: Book;
     }
   }
 }
