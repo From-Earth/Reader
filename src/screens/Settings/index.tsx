@@ -4,11 +4,26 @@ import { Header } from "@components/Header";
 import { useNavigation } from "@react-navigation/native";
 import { Accordion } from "@components/Accordion";
 import { RightIcon } from "@components/Icon";
-import { useConfigStore } from "@storage/settings";
+import { useMMKVStore } from "@storage/MMKV/index";
+import {
+  readBooksInDirectory,
+  requestExternalStoragePermission,
+} from "@utils/fs.storage";
 
 export function Settings() {
   const navigation = useNavigation();
-  const { config } = useConfigStore()
+  const { setPermissionToReadExternal, setBookData } = useMMKVStore();
+
+  async function handleReadBooks() {
+    const permission = await requestExternalStoragePermission();
+    if (!permission) return;
+    if (permission) {
+      setPermissionToReadExternal(permission);
+      const books = await readBooksInDirectory();
+      setBookData("allBooks", books);
+    }
+  }
+
   return (
     <Container>
       <Header isSetting={true}>
@@ -20,11 +35,14 @@ export function Settings() {
 
       <Title>Account Control</Title>
       <AccordionGroup>
-        <Accordion variant="first" onPress={() => navigation.navigate('Account')}>
+        <Accordion
+          variant="first"
+          onPress={() => navigation.navigate("Account")}
+        >
           Account
           <RightIcon />
         </Accordion>
-        <Accordion onPress={() => navigation.navigate('Account')}>
+        <Accordion onPress={() => navigation.navigate("Account")}>
           Payments & plans
           <RightIcon />
         </Accordion>
@@ -32,11 +50,14 @@ export function Settings() {
 
       <Title>Component Behaviour Control</Title>
       <AccordionGroup>
-        <Accordion variant="first" onPress={() => navigation.navigate('Search')}>
+        <Accordion
+          variant="first"
+          onPress={() => navigation.navigate("Search")}
+        >
           Search Bar
           <RightIcon />
         </Accordion>
-        <Accordion onPress={() => navigation.navigate('Chips')}>
+        <Accordion onPress={() => navigation.navigate("Chips")}>
           Chips
           <RightIcon />
         </Accordion>
@@ -44,8 +65,12 @@ export function Settings() {
 
       <Title>General</Title>
       <AccordionGroup>
-        <Accordion variant="first" onPress={() => console.log(config)}>
+        <Accordion variant="first">
           ChangeLog
+          <RightIcon />
+        </Accordion>
+        <Accordion onPress={() => handleReadBooks()}>
+          Local documents
           <RightIcon />
         </Accordion>
       </AccordionGroup>

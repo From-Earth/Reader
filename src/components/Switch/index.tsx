@@ -1,5 +1,5 @@
 import { View } from "moti";
-import { MutableRefObject, useCallback, useEffect, useMemo } from "react";
+import { useMemo } from "react";
 import { Pressable } from "react-native";
 import { getSwitchVariant } from "./switch.utils";
 

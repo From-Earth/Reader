@@ -3,7 +3,7 @@ export const defaultConfig: config = {
   patternsIsActive: false,
   pattern: "",
   onlyFindLocalFiles: false,
-  chipsIsActive: false,
+  chipsIsActive: true,
   chipsColorIsActive: false,
   colorStateComplete: `#22C55E`,
   colorStateIncomplete: `#D9D9D9`,

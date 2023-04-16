@@ -8,7 +8,7 @@ interface Props {
 }
 
 export function Header({ children, isSetting = false }: Props) {
-  const text = `${getChildrenText(children)}`;
+  const text = getChildrenText(children);
   const other = getChildren(children, "===:2").filter(
     (child) => typeof child !== "string"
   );
