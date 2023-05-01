@@ -1,16 +1,14 @@
-import { Header } from "@components/Header";
-import { Container, Title } from "./styles";
-import { Button } from "@components/Button";
-import { useNavigation, useRoute } from "@react-navigation/native";
+import { Container } from "./styles";
+import { useRoute } from "@react-navigation/native";
 import { Book } from "@storage/MMKV/default";
 import Pdf from "react-native-pdf";
-import { SafeAreaView, useWindowDimensions } from "react-native";
+import { SafeAreaView, StatusBar, useWindowDimensions } from "react-native";
 import { useMMKVStore } from "@storage/MMKV";
 import { useEffect, useRef } from "react";
+import { HeaderReader } from "@components/Header/Reader";
 
 export function Books() {
-  const { setBookProperty, getProp } = useMMKVStore();
-  const navigation = useNavigation();
+  const { setBookProperty } = useMMKVStore();
   const route = useRoute();
   const { id, title, uri, inPage } = route.params as Book;
 
@@ -21,21 +19,19 @@ export function Books() {
   useEffect(() => {
     setTimeout(() => {
       pdfRef.current?.setPage(inPage as number);
+      pdfRef.current?.state
     }, 50);
   }, []);
 
   return (
     <Container>
-      <Header isSetting={false}>
-        <Button variant="action" onPress={navigation.goBack}>
-          voltar
-        </Button>
-        <Title>{title}</Title>
-      </Header>
+      <StatusBar backgroundColor={"#FFFBFB"} barStyle={"dark-content"} />
+      <HeaderReader title={title} />
       <SafeAreaView style={{ flex: 1 }}>
         <Pdf
+          enableAnnotationRendering={true}
           trustAllCerts={false}
-          source={{ uri, cache: true }}
+          source={{ uri }}
           onError={(error) => {
             console.log(error);
           }}

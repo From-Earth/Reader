@@ -1,4 +1,5 @@
-import { Book } from '@storage/readingData/default';
+import { Book } from "@storage/readingData/default";
+import { Register } from "../screens/Register/index";
 
 export declare global {
   namespace ReactNavigation {
@@ -11,8 +12,9 @@ export declare global {
       Search: undefined;
       Background: undefined;
       LocalDocuments: undefined;
-      Chips: undefined
+      Chips: undefined;
       Book: Book;
+      Register: undefined;
     }
   }
 }

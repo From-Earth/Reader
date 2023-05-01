@@ -19,6 +19,7 @@ export function InputText({ isHeader = true, label, full, ...rest }: TextInputPr
         isFocused={isFocused}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
+        onEndEditing={() => setIsFocused(false)}
         blurOnSubmit={true}
         {...rest}
       />

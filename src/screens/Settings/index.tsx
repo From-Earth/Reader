@@ -12,7 +12,8 @@ import {
 
 export function Settings() {
   const navigation = useNavigation();
-  const { setPermissionToReadExternal, setBookData } = useMMKVStore();
+  const { setPermissionToReadExternal, setBookData, getBookData } =
+    useMMKVStore();
 
   async function handleReadBooks() {
     const permission = await requestExternalStoragePermission();
@@ -65,7 +66,10 @@ export function Settings() {
 
       <Title>General</Title>
       <AccordionGroup>
-        <Accordion variant="first">
+        <Accordion
+          variant="first"
+          onPress={() => console.log(getBookData("allBooks"))}
+        >
           ChangeLog
           <RightIcon />
         </Accordion>

@@ -1,11 +1,11 @@
-import { Dimensions, TouchableOpacity } from "react-native";
+import { Dimensions, Pressable } from 'react-native';
 import styled from "styled-components/native";
 
 export interface Props {
   variant: "default" | "first";
 }
 
-export const Container = styled(TouchableOpacity).attrs(() => ({
+export const Container = styled(Pressable).attrs(() => ({
   activeOpacity: 0.9,
 }))<Props>`
   display: flex;

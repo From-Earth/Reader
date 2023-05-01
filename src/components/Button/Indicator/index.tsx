@@ -11,12 +11,14 @@ type Props = TouchableOpacityProps & {
   connected?: boolean;
   children?: React.ReactNode;
   messageCase?: string;
+  alternativeMessage?: string;
 };
 
 export function Indicator({
   connected = false,
   children,
   messageCase = "Default Text",
+  alternativeMessage = "Default Text",
   ...rest
 }: Props) {
   const [isTooltipVisible, setIsTooltipVisible] = useState(false);
@@ -41,11 +43,9 @@ export function Indicator({
       >
         {isConnected ? <ConnectedIcon /> : <DisconnectedIcon />}
       </Container>
-      {isTooltipVisible && (
-        <Tooltip opened={isTooltipVisible}>
-          {noChild ? messageCase : children}
-        </Tooltip>
-      )}
+      <Tooltip opened={isTooltipVisible}>
+        {connected ? (noChild ? messageCase : children) : alternativeMessage}
+      </Tooltip>
     </TooltipContainer>
   );
 }
