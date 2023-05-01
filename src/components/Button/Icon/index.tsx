@@ -4,7 +4,7 @@ import { Container } from "./styles";
 
 interface Props {
   variant?: "primary" | "warning";
-  children: React.ReactNode
+  children?: React.ReactNode
 }
 
 export function ButtonIcon({ variant = "primary", children, ...rest }: TouchableOpacityProps & Props) {

@@ -4,6 +4,7 @@ export const BOOK_KEY = "READER:books";
 export interface Storage {
   databook: BookData;
   setBookData: (property: Exclude<keyof BookData, "currentlyReading" | "permissionToReadExternal">, value: Book[]) => void,
+  setRecentBook: (value: Book) => void,
   setBookProperty: (id: string, property: Exclude<keyof BookData, "currentlyReading" | "permissionToReadExternal">, property2: keyof Book, value: string | boolean | number) => void,
   setCurrentlyReading: (value: Book) => void,
   setPermissionToReadExternal: (value: boolean) => void,
@@ -20,6 +21,7 @@ export type Book = {
   inPage?: number;
   totalPages?: number;
   totalRead?: number;
+  image?: string;
 };
 
 export interface BookData {

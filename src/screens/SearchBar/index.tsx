@@ -12,7 +12,7 @@ import { useConfigStore } from "@storage/settings";
 
 export function SearchBarBehavior() {
   const navigation = useNavigation();
-  const { setConfig, resetConfig, getConfig } = useConfigStore();
+  const { setConfig, getConfig } = useConfigStore();
   const [pattern, setPattern] = useState("");
 
   function handleAtt() {
@@ -45,6 +45,8 @@ export function SearchBarBehavior() {
         <AccordionGroup>
           <AccordionSwitch
             isActive={getConfig("searchIsActive")}
+            unChecked={() => setConfig("searchIsActive", false)}
+            isChecked={() => setConfig("searchIsActive", true)}
             variant="first"
           >
             Search Bar
@@ -57,7 +59,7 @@ export function SearchBarBehavior() {
         <AccordionGroup>
           <AccordionSwitch
             isActive={getConfig("patternsIsActive")}
-            unChecked={() => resetConfig("patternsIsActive")}
+            unChecked={() => setConfig("patternsIsActive", false)}
             isChecked={() => setConfig("patternsIsActive", true)}
             variant="first"
           >
@@ -68,7 +70,7 @@ export function SearchBarBehavior() {
           </AccordionSwitch>
         </AccordionGroup>
         <InputTextArea
-          placeholder={`example: pdf, epub, .docx | .*boleto.*`}
+          placeholder={`example: pdf, epub, docx | .*boleto.*`}
           onChangeText={setPattern}
         />
         <LabelButton>
@@ -76,7 +78,7 @@ export function SearchBarBehavior() {
             WARNING: activating one or both options will change results of
             findings.
           </Label>
-          <Button disabled={getConfig("patternsIsActive")} onPress={handleAtt}>
+          <Button disabled={!getConfig("patternsIsActive")} onPress={handleAtt}>
             save config
           </Button>
         </LabelButton>

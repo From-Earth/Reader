@@ -5,6 +5,7 @@ export const Title = styled.Text`
     font-size: ${({ theme }) => theme.FONT_SIZE.MD}px;
     color: ${({ theme }) => theme.COLORS.NEUTRAL_900};
     text-align: center;
+    margin-top: 48px;
 `
 
 export const Description = styled.Text`

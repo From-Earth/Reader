@@ -2,9 +2,8 @@ import { getChildrenText } from "@utils/tools";
 import { MutableRefObject, useRef } from "react";
 import { Text } from "react-native/Libraries/Text/Text";
 import { Content } from "./styles";
-import { MotiView } from "moti";
 import { useTheme } from "styled-components/native";
-import { Easing } from "react-native-reanimated";
+import Animated, { Easing, FadeIn, FadeOut } from "react-native-reanimated";
 
 interface Props {
   children?: React.ReactNode;
@@ -24,28 +23,26 @@ export function Tooltip({ children, opened }: Props) {
 
   setTimeout(() => opened && textRef.current.focus());
 
-  return opened && (
-    <MotiView
-      from={{ scale: .8, opacity: .8 }}
-      transition={{ type: "timing", duration: 125, easing: Easing.inOut(Easing.linear) }}
-      animate={{
-        scale: opened && 1,
-        opacity: opened && 1,
-      }}
-      style={{
-        position: "absolute",
-        backgroundColor: COLORS.PRIMARY,
-        borderRadius: SIZES.size_4,
-        paddingHorizontal: SIZES.size_8,
-        paddingVertical: SIZES.size_8,
-        top: 40,
-        alignItems: "center",
-        justifyContent: "center",
-        minWidth: 72,
-        zIndex: 1,
-      }}
-    >
-      <Content ref={textRef}>{message}</Content>
-    </MotiView>
+  return (
+    opened && (
+      <Animated.View
+        entering={FadeIn.duration(200).easing(Easing.inOut(Easing.ease))}
+        exiting={FadeOut.duration(200).easing(Easing.inOut(Easing.ease))}
+        style={{
+          position: "absolute",
+          backgroundColor: COLORS.PRIMARY,
+          borderRadius: SIZES.size_4,
+          paddingHorizontal: SIZES.size_8,
+          paddingVertical: SIZES.size_8,
+          top: 40,
+          alignItems: "center",
+          justifyContent: "center",
+          minWidth: 72,
+          zIndex: 1,
+        }}
+      >
+        <Content ref={textRef}>{message}</Content>
+      </Animated.View>
+    )
   );
 }

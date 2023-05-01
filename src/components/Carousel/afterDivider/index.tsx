@@ -29,7 +29,7 @@ const CarouselAfterDivider = ({ filterQuery }: Props) => {
         data={filteredData}
         renderItem={({ item, index }) => (
           <Separator index={index}>
-            <CardAction title={item.title} id={item.id} uri={item.uri} totalRead={item.totalRead} inPage={item.inPage}/>
+            <CardAction title={item.title} id={item.id} uri={item.uri} totalRead={item.totalRead} inPage={item.inPage} image={item.image}/>
           </Separator>
         )}
         numColumns={3}

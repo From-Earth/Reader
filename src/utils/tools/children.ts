@@ -46,12 +46,12 @@ export function getChildrenText(
  *
  * @function getChildren
  *
- * Function that returns childrens of
+ * Function that returns children of
  * a component. You can use this function with a delimiter too.
  *
  * @param {React.ReactNode} children React.ReactNode
  *
- * @param {string} [delimiter]
+ * @param {string | undefined} [delimiter]
  *
  * Delimiter should be passed as a string
  * Delimiter has comparables like: <, >, === and so on.
@@ -64,23 +64,37 @@ export function getChildrenText(
  */
 export function getChildren(
   children: React.ReactNode,
-  delimiter?: string
+  delimiter: string | undefined = undefined
 ): React.ReactNode[] {
   const childrenArray = React.Children.toArray(children);
   const count = React.Children.count(children);
 
   const buffer: string[] | undefined =
-    delimiter !== "" ? delimiter?.split(":") : [];
-  const operator = buffer?.at(0);
+    delimiter !== undefined ? delimiter.split(":") : undefined;
+  const operator: string | undefined = buffer?.[0];
 
-  const comparisonString = `${count} ${operator} ${buffer?.at(1)}`;
+  let result: React.ReactNode[] = childrenArray;
 
-  if (!delimiter) {
-    return childrenArray;
-  } else {
-    const result = eval(comparisonString) ? childrenArray : [children];
-    return result;
+  if (delimiter) {
+    switch (operator) {
+      case "<":
+        const limit = parseInt(buffer?.[1] || "0");
+        result = childrenArray.slice(0, limit);
+        break;
+      case ">":
+        const startIndex = parseInt(buffer?.[1] || "0");
+        result = childrenArray.slice(startIndex);
+        break;
+      case "==":
+        const index = parseInt(buffer?.[1] || "0");
+        result = childrenArray.slice(index, index + 1);
+        break;
+      default:
+        break;
+    }
   }
+
+  return result;
 }
 
 export function getChildrenCount(children: React.ReactNode) {

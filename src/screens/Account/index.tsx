@@ -23,7 +23,7 @@ export function Account() {
                 log-in
             </Button>
             <Label>Don't have an account?</Label>
-            <Link>
+            <Link url={'Register'}>
                 Sign up &gt;
             </Link>
         </LoginForm>
