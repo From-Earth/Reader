@@ -21,21 +21,6 @@ export function Home() {
 
   const hasRecent = getBookData("lastBooksRead") as Book[];
 
-  //useMemo(async () => {
-  //  if (getBookData("permissionToReadExternal")) {
-  //   const allbooks = await updateBooks([
-  //     ...(getBookData("allBooks") as Book[]),
-  // ]);
-  //const lasbooks = await updateBooks([
-  // ...(getBookData("lastBooksRead") as Book[]),
-  //]);
-  //setBookData("allBooks", allbooks);
-  //setBookData("lastBooksRead", lasbooks);
-
-  //console.log("asdasdasdasdsadasd");
-  // }
-  // }, []);
-
   return (
     <Container>
       <Header isSetting={false}>
