@@ -38,13 +38,9 @@ export function Settings() {
       <AccordionGroup>
         <Accordion
           variant="first"
-          onPress={() => navigation.navigate("Account")}
+          onPress={() => navigation.navigate("Login")}
         >
           Account
-          <RightIcon />
-        </Accordion>
-        <Accordion onPress={() => navigation.navigate("Account")}>
-          Payments & plans
           <RightIcon />
         </Accordion>
       </AccordionGroup>
@@ -66,14 +62,7 @@ export function Settings() {
 
       <Title>General</Title>
       <AccordionGroup>
-        <Accordion
-          variant="first"
-          onPress={() => console.log(getBookData("allBooks"))}
-        >
-          ChangeLog
-          <RightIcon />
-        </Accordion>
-        <Accordion onPress={() => handleReadBooks()}>
+        <Accordion onPress={() => handleReadBooks()} variant="first">
           Local documents
           <RightIcon />
         </Accordion>

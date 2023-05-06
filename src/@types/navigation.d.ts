@@ -6,7 +6,7 @@ export declare global {
     interface RootParamList {
       Home: undefined;
       Settings: undefined;
-      Account: undefined;
+      Login: undefined;
       Cards: undefined;
       Header: undefined;
       Search: undefined;

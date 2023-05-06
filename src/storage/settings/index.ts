@@ -7,6 +7,7 @@ interface ConfigStore {
   setConfig: (property: keyof config, value: any) => void;
   getConfig: (property: keyof config) => any;
   resetConfig: (property: keyof config) => void;
+  resetAllConfig: () => void;
 }
 
 const CONFIG_KEY = "READER:configs";
@@ -46,10 +47,16 @@ export const useConfigStore = create<ConfigStore>((set, get) => {
     });
   }
 
+  async function resetAllConfig() {
+    await AsyncStorage.setItem(CONFIG_KEY, JSON.stringify(defaultConfig));
+    set({ config: defaultConfig });
+  }
+
   return {
     config,
     getConfig,
     setConfig,
     resetConfig,
+    resetAllConfig
   };
 });

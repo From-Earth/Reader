@@ -36,6 +36,7 @@ export async function readBooksInDirectory() {
 
       const { uri } = await PdfThumbnail.generate(fileUri, 0);
 
+      console.log(fileUri)
       return {
         extension,
         uri: fileUri,

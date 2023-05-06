@@ -37,7 +37,7 @@ export const useMMKVStore = create<Storage, [["zustand/persist", Storage]]>(
       },
       setRecentBook(value) {
         const currentLastBooksRead = get().databook.lastBooksRead;
-        if (currentLastBooksRead.some(book => book.id === value.id)) {
+        if (currentLastBooksRead.some((book) => book.id === value.id)) {
           // If the book already exists in the lastBooksRead array, don't add it again
           return;
         }

@@ -19,8 +19,8 @@ export function Books() {
   useEffect(() => {
     setTimeout(() => {
       pdfRef.current?.setPage(inPage as number);
-      pdfRef.current?.state
-    }, 50);
+      pdfRef.current?.state;
+    });
   }, []);
 
   return (

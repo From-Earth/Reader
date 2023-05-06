@@ -7,8 +7,10 @@ export const defaultConfig: config = {
   chipsColorIsActive: false,
   colorStateComplete: `#22C55E`,
   colorStateIncomplete: `#D9D9D9`,
-  auth: {
-    isActive: false,
+  account: {
+    id: 0,
+    token: "",
+    isAuthenticated: false,
     password: "",
     email: "",
     name: "",
@@ -24,8 +26,10 @@ export interface config {
   chipsColorIsActive: boolean;
   colorStateComplete: string;
   colorStateIncomplete: string;
-  auth: {
-    isActive: boolean;
+  account: {
+    token?: string;
+    id?: number;
+    isAuthenticated: boolean;
     password: string;
     email: string;
     name: string;
