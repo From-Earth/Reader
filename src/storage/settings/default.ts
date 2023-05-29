@@ -8,6 +8,8 @@ export const defaultConfig: config = {
   colorStateComplete: `#22C55E`,
   colorStateIncomplete: `#D9D9D9`,
   auth: {
+    id: "",
+    token: "",
     isActive: false,
     password: "",
     email: "",
@@ -25,6 +27,8 @@ export interface config {
   colorStateComplete: string;
   colorStateIncomplete: string;
   auth: {
+    token?: string;
+    id?: string;
     isActive: boolean;
     password: string;
     email: string;
