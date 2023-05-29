@@ -5,13 +5,10 @@ import {
   vec,
   useFont,
   Text,
-  Image,
-  useImage,
 } from "@shopify/react-native-skia";
 import { ActivityIndicator, Dimensions } from "react-native";
 import ReadexPro from "../../../assets/fonts/ReadexPro-Regular.ttf";
-import { useMMKVStore } from "@storage/MMKV";
-import { Book } from "@storage/MMKV/default";
+import { useAsyncStore } from "@storage/MMKV/versaofudida";
 
 const width = Dimensions.get("window").width - 48;
 const height = 160;
@@ -21,13 +18,10 @@ interface Props {
 }
 
 export function CardUser({ name }: Props): JSX.Element | null {
-  const { getBookData } = useMMKVStore();
   const fontTitle = useFont(ReadexPro, 20);
   const fontNormal = useFont(ReadexPro, 10);
-  const imgPath = getBookData("currentlyReading") as Book;
-  const image = imgPath && useImage(imgPath.image);
 
-  if (fontTitle === null || fontNormal === null || image === null) {
+  if (fontTitle === null || fontNormal === null) {
     return <ActivityIndicator />;
   }
 
@@ -64,25 +58,6 @@ export function CardUser({ name }: Props): JSX.Element | null {
         x={48}
         color={"#B5B7C4"}
       />
-      {imgPath && (
-        <Image
-          image={image}
-          x={width - 84}
-          y={64}
-          width={60}
-          height={60}
-          fit="fill"
-        />
-      )}
-      {imgPath && (
-        <Text
-          text="Last read"
-          font={fontNormal}
-          y={48}
-          x={width - 84}
-          color={"#B5B7C4"}
-        />
-      )}
     </Canvas>
   );
 }

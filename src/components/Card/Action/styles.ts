@@ -1,25 +1,17 @@
 import styled from "styled-components/native";
-import { ImageBackground, TouchableOpacity } from "react-native";
-
-export const Container = styled(ImageBackground).attrs(({ theme }) => ({
-  imageStyle: {
-    borderRadius: theme.SIZES.size_6,
-  }
-}))`
-  width: 90px;
-  height: 90px;
-`;
+import { TouchableOpacity } from "react-native";
 
 export const TEste = styled.View`
   border-radius: 6px;
 `
 
-export const Clickable = styled(TouchableOpacity).attrs(() => ({
+export const Container= styled(TouchableOpacity).attrs(() => ({
   activeOpacity: 0.8,
 }))`
   width: 90px;
   height: 90px;
   border-radius: ${({ theme }) => theme.SIZES.size_6}px;
+  background-color: ${({ theme }) => theme.COLORS.GREY_900};
   flex-direction: row;
   align-items: flex-end;
   justify-content: flex-end;

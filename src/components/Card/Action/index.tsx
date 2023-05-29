@@ -1,12 +1,11 @@
-import { Clickable, Container, Title, TitleContainer } from "./styles";
 import { MotiView } from "moti";
 import { Easing } from "react-native-reanimated";
 import { TouchableOpacityProps } from "react-native/types";
-import { useNavigation } from "@react-navigation/native";
 import { InformativeTag } from "@components/Informative Tag";
-import { useMMKVStore } from "@storage/MMKV";
 import { Book } from "@storage/MMKV/default";
 import { useConfigStore } from "@storage/settings";
+import { Container, Title, TitleContainer } from "./styles";
+import { useAsyncStore } from "@storage/MMKV/versaofudida";
 
 type isCarousel = {
   isCarousel?: boolean;
@@ -16,22 +15,19 @@ export function CardAction({
   title,
   id,
   uri,
-  inPage,
   isCarousel,
   totalRead,
   image,
   ...rest
 }: Book & TouchableOpacityProps & isCarousel) {
-  const { setRecentBook, setCurrentlyReading } = useMMKVStore();
+  const { setRecentBook, setCurrentlyReading } = useAsyncStore();
   const { getConfig } = useConfigStore();
-  const navigation = useNavigation();
 
   function handlePress() {
     if (!isCarousel) {
-      setRecentBook({ title, id, uri, inPage, image });
+      setRecentBook({ title, id, uri });
     }
-    setCurrentlyReading({ title, id, uri, inPage, image });
-    navigation.navigate("Book", { title, id, uri, inPage });
+    setCurrentlyReading({ title, id, uri });
   }
 
   return (
@@ -48,16 +44,10 @@ export function CardAction({
       }}
     >
       <TitleContainer>
-        <Container
-          source={{ uri: image }}
-          resizeMode="stretch"
-          resizeMethod="scale"
-        >
-          <Clickable {...rest} onPress={() => handlePress()}>
-            {getConfig("chipsIsActive") && (
-              <InformativeTag readStats={`${Math.round(totalRead ?? 0)}`} />
-            )}
-          </Clickable>
+        <Container {...rest} onPress={() => handlePress()}>
+          {getConfig("chipsIsActive") && (
+            <InformativeTag readStats={`${Math.round(totalRead ?? 0)}`} />
+          )}
         </Container>
         <Title>{title.length >= 20 ? `${title.slice(0, 20)}...` : title}</Title>
       </TitleContainer>

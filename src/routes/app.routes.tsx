@@ -25,7 +25,6 @@ export function AppRoutes() {
       <Screen name="Login" component={Login} />
       <Screen name="Search" component={SearchBarBehavior} />
       <Screen name="Chips" component={ChipsConfig} />
-      <Screen name="Book" component={Books} />
       <Screen name="Register" component={Register} />
     </Navigator>
   );

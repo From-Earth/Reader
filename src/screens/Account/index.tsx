@@ -7,15 +7,12 @@ import { CardUser } from "@components/Card/User";
 import { Accordion } from "@components/Accordion";
 import { RightIcon, WarningIcon } from "@components/Icon";
 import { ButtonIcon } from "@components/Button/Icon";
-import { useMMKVStore } from "@storage/MMKV";
 import { Book } from "@storage/MMKV/default";
-import { readAsStringAsync } from "expo-file-system";
-import { encode } from "base-64";
-import axios from "axios";
+import { useAsyncStore } from "@storage/MMKV/versaofudida";
 
 export function Account() {
   const { getConfig, resetAllConfig } = useConfigStore();
-  const { getBookData } = useMMKVStore();
+  const { getBookData } = useAsyncStore();
   const navigation = useNavigation();
   const name = getConfig("account").name.split(" ")[0];
   const userId: number = getConfig("account").id;
@@ -50,62 +47,6 @@ export function Account() {
     setTimeout(() => resetAllConfig(), 120);
   }
 
-  async function uploadPDF() {
-    console.log(books[0].uri)
-    try {
-      const pdf = await readAsStringAsync(books[0].uri, {
-        encoding: 'base64'
-      });
-      
-      const binary = encode(pdf);
-      const bytes = new Uint8Array(binary.length);
-      for (let i = 0; i < binary.length; i++) {
-        bytes[i] = binary.charCodeAt(i);
-      }
-      
-      const blob = new Blob([bytes], { type: 'application/pdf' });
-      
-      const data = new FormData();
-      data.append('id', userId.toString());
-      data.append('arquivo', blob);
-      
-      const url = 'https://webapisenac.azurewebsites.net/documentos/upload';
-      const res = await fetch(url, {
-        method: 'POST',
-        body: data
-      });
-
-      const respo = await axios.post(url, data, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      });
-
-      console.log(res.ok);
-      console.log(res.status);
-      console.log(respo.status);
-      console.log(detectMimeType(pdf));
-    } catch (error) {
-      console.log(error);
-    }
-  }
-
-  const signatures: any = {
-    JVBERi0: 'application/pdf',
-    R0lGODdh: 'image/gif',
-    R0lGODlh: 'image/gif',
-    iVBORw0KGgo: 'image/png',
-    '/9j/': 'image/jpg',
-};
-
-  function detectMimeType(b64: string) {
-    for (let s in signatures) {
-      if (b64.indexOf(s) === 0) {
-        return signatures[s];
-      }
-    }
-  }
-
   return (
     <Container>
       <Header isSetting={true}>
@@ -127,7 +68,6 @@ export function Account() {
           Log-out
           <RightIcon />
         </Accordion>
-        <Button onPress={uploadPDF}>sincronizar</Button>
       </AccordionGroup>
     </Container>
   );

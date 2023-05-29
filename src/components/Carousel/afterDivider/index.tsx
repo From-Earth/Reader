@@ -3,24 +3,22 @@ import { Dimensions, FlatList } from "react-native";
 import { Container, Separator } from "./styles";
 import { Empty } from "../Empty";
 import { Book } from "@storage/MMKV/default";
-import { useMMKVStore } from "@storage/MMKV";
+import { useAsyncStore } from "@storage/MMKV/versaofudida";
 
 interface Props {
   filterQuery: string;
 }
 
 const CarouselAfterDivider = ({ filterQuery }: Props) => {
-  const { getBookData } = useMMKVStore()
-  const data: Book[] = [
-    ...getBookData('allBooks') as Book[] || [],
-  ];
+  const { getBookData } = useAsyncStore();
+  const data: Book[] = [...((getBookData("allBooks") as Book[]) || [])];
 
   const filteredData =
     filterQuery.length === 0
       ? data
       : data.filter((item) =>
-        item.title?.toLowerCase().includes(filterQuery.toLowerCase())
-      );
+          item.title?.toLowerCase().includes(filterQuery.toLowerCase())
+        );
 
   return (
     <Container>
@@ -29,7 +27,14 @@ const CarouselAfterDivider = ({ filterQuery }: Props) => {
         data={filteredData}
         renderItem={({ item, index }) => (
           <Separator index={index}>
-            <CardAction title={item.title} id={item.id} uri={item.uri} totalRead={item.totalRead} inPage={item.inPage} image={item.image}/>
+            <CardAction
+              title={item.title}
+              id={item.id}
+              uri={item.uri}
+              totalRead={item.totalRead}
+              inPage={item.inPage}
+              image={item.image}
+            />
           </Separator>
         )}
         numColumns={3}
@@ -42,9 +47,11 @@ const CarouselAfterDivider = ({ filterQuery }: Props) => {
         }}
         keyExtractor={(item) => item.id + "#"}
         showsVerticalScrollIndicator={false}
-        ListEmptyComponent={<Empty description={"Tente adicioná-los"}>
-          Parece que não há livros
-        </Empty>}
+        ListEmptyComponent={
+          <Empty description={"Tente adicioná-los"}>
+            Parece que não há livros
+          </Empty>
+        }
       />
     </Container>
   );

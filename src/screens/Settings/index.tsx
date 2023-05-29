@@ -4,16 +4,16 @@ import { Header } from "@components/Header";
 import { useNavigation } from "@react-navigation/native";
 import { Accordion } from "@components/Accordion";
 import { RightIcon } from "@components/Icon";
-import { useMMKVStore } from "@storage/MMKV/index";
+
 import {
   readBooksInDirectory,
   requestExternalStoragePermission,
 } from "@utils/fs.storage";
+import { useAsyncStore } from "@storage/MMKV/versaofudida";
 
 export function Settings() {
   const navigation = useNavigation();
-  const { setPermissionToReadExternal, setBookData, getBookData } =
-    useMMKVStore();
+  const { setPermissionToReadExternal, setBookData } = useAsyncStore();
 
   async function handleReadBooks() {
     const permission = await requestExternalStoragePermission();
@@ -36,10 +36,7 @@ export function Settings() {
 
       <Title>Account Control</Title>
       <AccordionGroup>
-        <Accordion
-          variant="first"
-          onPress={() => navigation.navigate("Login")}
-        >
+        <Accordion variant="first" onPress={() => navigation.navigate("Login")}>
           Account
           <RightIcon />
         </Accordion>

@@ -27,5 +27,5 @@ export const Title = styled.Text`
 export const Label = styled.Text`
   font-family: ${({ theme }) => theme.FONT.REGULAR};
   font-size: ${({ theme }) => theme.FONT_SIZE.XSM}px;
-  color: ${({ theme }) => theme.COLORS.ERROR};
+  color: ${({ theme }) => theme.COLORS.GREY_500};
 `;

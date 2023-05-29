@@ -9,13 +9,13 @@ import CarouselAfterDivider from "@components/Carousel/afterDivider";
 import { InputText } from "@components/Input";
 import { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
-import { useMMKVStore } from "@storage/MMKV";
 import { Book } from "@storage/MMKV/default";
 import { useConfigStore } from "@storage/settings";
 import * as Network from "expo-network";
+import { useAsyncStore } from "@storage/MMKV/versaofudida";
 
 export function Home() {
-  const { getBookData } = useMMKVStore();
+  const { getBookData } = useAsyncStore();
   const { getConfig } = useConfigStore();
   const [searchQuery, setSearchQuery] = useState("");
   const navigation = useNavigation();

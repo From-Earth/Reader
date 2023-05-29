@@ -3,14 +3,14 @@ import React, { useState } from "react";
 import { FlatList } from "react-native";
 import { Container } from "./styles";
 import { Book } from "@storage/MMKV/default";
-import { useMMKVStore } from "@storage/MMKV";
+import { useAsyncStore } from "@storage/MMKV/versaofudida";
 
 const ITEM_WIDTH = 200;
 const ITEM_SPACING = 20;
 
 const Carousel = () => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
-  const { getBookData } = useMMKVStore();
+  const { getBookData } = useAsyncStore();
   const hasRecent = getBookData("lastBooksRead") as Book[];
 
   const data: Book[] = [...((getBookData("lastBooksRead") as Book[]) || [])];

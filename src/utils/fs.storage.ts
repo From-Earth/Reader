@@ -1,7 +1,6 @@
 import { Book } from "@storage/MMKV/default";
 import { getInfoAsync, StorageAccessFramework as SAF } from "expo-file-system";
 import { customAlphabet } from "nanoid/non-secure";
-import PdfThumbnail from "react-native-pdf-thumbnail";
 
 const nanoid = "abcdefghijklmnopqrstuvwxyz0123456789";
 const generateId = customAlphabet(nanoid, 8);
@@ -34,9 +33,6 @@ export async function readBooksInDirectory() {
       const name = decoded?.split(".").shift() as string;
       const extension = decoded?.split(".").pop();
 
-      const { uri } = await PdfThumbnail.generate(fileUri, 0);
-
-      console.log(fileUri)
       return {
         extension,
         uri: fileUri,
@@ -45,7 +41,6 @@ export async function readBooksInDirectory() {
         id: generateId(),
         inPage: 0,
         totalPages: 0,
-        image: uri,
       };
     })
   );
@@ -57,7 +52,7 @@ export async function updateBooks(books: Book[]): Promise<Book[]> {
   const updated = await readBooksInDirectory();
 
   const buffer = books.map((book) => {
-    const index = updated.findIndex((item) => item.size === book.size);
+    const index = updated.findIndex((item: { size: number | undefined; }) => item.size === book.size);
     if (index !== -1) {
       return {
         ...updated[index],
