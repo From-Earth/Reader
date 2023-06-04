@@ -51,7 +51,7 @@ export function Login() {
     }
   };
 
-  return !getConfig("account").isAuthenticated ? (
+  return !getConfig("account")?.isAuthenticated ? (
     <Container>
       <Header isSetting={true}>
         <Button variant="action" onPress={navigation.goBack}>
